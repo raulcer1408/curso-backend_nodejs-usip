@@ -154,3 +154,29 @@ const buscaAlumnoMayorNota = () => {
 console.log(
   `el alumnos con mayor nota es: ${JSON.stringify(buscaAlumnoMayorNota())}`
 );
+
+//repaso de promises asincroina
+console.log("suma desde el servidor");
+const sumaServidor = async () => {
+  new Promise((resolve, reject) =>
+    setTimeout(() => {
+      const resultado = Math.random(10);
+
+      resolve("operacion ok");
+    }, 3000)
+  );
+};
+
+console.log("el resultado de la suma desde el servidor es: ");
+
+sumaServidor(2, 3)
+  .then((res) => console.log(res))
+  .catch((error) => console.log(error));
+
+//otro ejemplo mas practico de asincronia promesas
+console.log("Inicio de ejecucion llamada al servidor");
+fetch("https://jsonplaceholder.typicode.com/todos/1")
+  .then((response) => response.json())
+  .then((json) => console.log("repuesta:", json));
+
+console.log("fin de ejecucion");
