@@ -1,5 +1,6 @@
 import { sequelize } from "./index.js";
 import { DataTypes } from "sequelize";
+import Role from "./rol.model.js";
 
 const Usuario = sequelize.define("usuarios", {
   usuario: {
@@ -22,6 +23,18 @@ const Usuario = sequelize.define("usuarios", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+});
+
+Usuario.belongsToMany(Role, {
+  through: "user_role",
+  foreignKey: "userId",
+  otherKey: "roleId",
+});
+
+Role.belongsToMany(Usuario, {
+  through: "user_role",
+  foreignKey: "roleId",
+  otherKey: "userId",
 });
 
 export default Usuario;

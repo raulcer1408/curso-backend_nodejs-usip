@@ -1,4 +1,5 @@
 import Usuario from "../models/usuario.model.js";
+import Role from "../models/rol.model.js";
 import bcryptjs from "bcryptjs";
 
 export const create = (req, res) => {
